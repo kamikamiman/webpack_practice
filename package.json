@@ -10,7 +10,10 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "css-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "dependencies": {}
 }
