@@ -11,6 +11,7 @@ module.exports = {
   },
   module: {
     rules: [
+      // cssファイルを読込
       {
         test: /\.css/, // cssファイルがあったら以下を使用する。
         use: [
@@ -20,6 +21,19 @@ module.exports = {
           },
           {
             loader: "css-loader",
+          },
+        ],
+      },
+      // 画像ファイルを読込
+      {
+        test: /\.(png|jpg)/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+              name: "images/[name].[ext]",
+            },
           },
         ],
       },
