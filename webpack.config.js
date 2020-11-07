@@ -13,7 +13,7 @@ module.exports = {
     rules: [
       // cssファイルを読込
       {
-        test: /\.css/, // cssファイルがあったら以下を使用する。
+        test: /\.(css|sass|scss)/, // cssファイルがあったら以下を使用する。
         use: [
           // loaderは下から適用される為、記述する順番に注意。
           {
@@ -21,6 +21,9 @@ module.exports = {
           },
           {
             loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
           },
         ],
       },
