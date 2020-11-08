@@ -49,13 +49,22 @@ module.exports = {
       },
       // 画像ファイルを読込
       {
-        test: /\.(png|jpg)/,
+        test: /\.(png|jpg|jpeg)/,
         use: [
           {
             loader: "file-loader",
             options: {
               esModule: false,
               name: "images/[name].[ext]",
+            },
+          },
+          {
+            loader: "image-webpack-loader", // 自動的に画像を圧縮
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 50,
+              },
             },
           },
         ],
