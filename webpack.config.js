@@ -11,9 +11,24 @@ module.exports = {
   },
   module: {
     rules: [
+      // jsファイルをトランスパイル(ES6 → ES5へ変換する)
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                ["@babel/preset-env", { targets: "> 0.25%, not dead" }],
+              ],
+            },
+          },
+        ],
+      },
       // cssファイルを読込
       {
-        test: /\.(css|sass|scss)/, // cssファイルがあったら以下を使用する。
+        test: /\.(css|sass|scss)/,
         use: [
           // loaderは下から適用される為、記述する順番に注意。
           {
