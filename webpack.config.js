@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
+  mode: "development", // 出力ファイルのモードを選択。
+  devtool: "source-map", // コードを分かりやすくする。
   entry: "./src/javascripts/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"), // 絶対パスに変換する。
@@ -36,6 +38,9 @@ module.exports = {
           },
           {
             loader: "css-loader",
+            options: {
+              sourceMap: true, // 元のsassファイルを表示させる。 動作が重くなるので本番環境ではfalseにする。
+            },
           },
           {
             loader: "sass-loader",
