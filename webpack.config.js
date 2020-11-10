@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
   mode: "development", // 出力ファイルのモードを選択。
@@ -13,6 +14,15 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue/,
+        exclude: /node_modules/, // 対象外のファイル
+        use: [
+          {
+            loader: "vue-loader",
+          },
+        ],
+      },
       // jsファイルをトランスパイル(ES6 → ES5へ変換する)
       {
         test: /\.js/,
@@ -23,6 +33,7 @@ module.exports = {
             options: {
               presets: [
                 ["@babel/preset-env", { targets: "> 0.25%, not dead" }],
+                "@babel/preset-react",
               ],
             },
           },
@@ -86,6 +97,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: "./stylesheets/main.css",
     }),
